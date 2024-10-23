@@ -11,6 +11,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    env:
+      DOMAIN: ${{ secrets.DOMAIN }} # Переменная окружения для всего job
+      ANOTHER_VAR: 'hello' # Использование секрета
 
     steps:
     - uses: actions/checkout@v4
