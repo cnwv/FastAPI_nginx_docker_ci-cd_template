@@ -20,11 +20,11 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_SSH_KEY }}
         port: 22
-        envs:
-          DOMAIN: ${{ secrets.DOMAIN }}
-        script: |
-          cd /path/to/your/project
-          git pull origin main
-          DOMAIN=${{ secrets.DOMAIN }} docker-compose down
-          DOMAIN=${{ secrets.DOMAIN }} docker-compose up -d --build
-          docker-compose run certbot
+      env:
+        DOMAIN: ${{ secrets.DOMAIN }}
+      run: |
+        cd /path/to/your/project
+        git pull origin main
+        DOMAIN=${{ secrets.DOMAIN }} docker-compose down
+        DOMAIN=${{ secrets.DOMAIN }} docker-compose up -d --build
+        docker-compose run certbot
